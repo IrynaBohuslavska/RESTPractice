@@ -1,0 +1,25 @@
+public class RestPractise {
+    public static void getInformation(){
+   	String body = '{ "data": { "contents": [ {"content": { "source": "cl","uuid":"string", "status": "init", "kind": "string",'
+    +' "items": [ {"uuid": "string","kind": "string", "title": "string","filename": "string", "status": "active","version": "string",'
+    +'"revision": "string","meta": {},"source": "string", "thumbs": {}, "url": "string" }] } }] }}';
+        
+        
+    Map<String, Object> results = (Map<String, Object>) JSON.deserializeUntyped(body);
+    Map<String, Object> data= (Map<String, Object>) results.get('data');
+        
+        
+    List<Object> a = (List<Object>)data.get('contents');
+        
+    Map<String, Object> contents = (Map<String, Object>)a[0];
+    Map<String, Object> content= (Map<String, Object>) contents.get('content');
+        
+        
+    List<Object> a2 = (List<Object>)content.get('items');
+    Map<String, Object> items = (Map<String, Object>)a2[0];
+        System.debug(content.get('status'));
+        for(String key : items.keySet()){
+            System.debug('key is = '+key+'  value is = '+items.get(key));
+        }
+	}
+}
